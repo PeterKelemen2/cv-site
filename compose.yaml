@@ -1,0 +1,11 @@
+services:
+  cv-site:
+    image: ghcr.io/your-username/cv-site:latest
+    container_name: cv-site
+    restart: unless-stopped
+    networks:
+      - petinet
+
+networks:
+  petinet:
+    external: true
