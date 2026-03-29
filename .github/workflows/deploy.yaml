@@ -42,15 +42,6 @@ jobs:
             ghcr.io/${{ env.REPO }}:latest
             ghcr.io/${{ env.REPO }}:${{ env.RELEASE_VERSION }}
 
-      - name: Copy compose file to VPS
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_SSH_KEY }}
-          source: compose.yml
-          target: ~/cv-site/
-
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -60,7 +51,13 @@ jobs:
           envs: RELEASE_VERSION,REPO
           script: |
             docker login ghcr.io -u ${{ secrets.GHCR_USERNAME }} -p ${{ secrets.GHCR_TOKEN }}
-            docker compose -f ~/cv-site/compose.yml pull
-            docker compose -f ~/cv-site/compose.yml up -d
+            docker pull ghcr.io/$REPO:$RELEASE_VERSION
+            docker stop cv-site || true
+            docker rm cv-site || true
+            docker run -d \
+              --name cv-site \
+              --restart unless-stopped \
+              --network petinet \
+              ghcr.io/$REPO:$RELEASE_VERSION
             docker exec nginx nginx -s reload
             docker image prune -f
