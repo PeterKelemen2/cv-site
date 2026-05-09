@@ -72,6 +72,4 @@ jobs:
 
             docker compose up -d --remove-orphans
 
-            docker exec nginx nginx -s reload
-
             docker image prune -f
