@@ -2,12 +2,17 @@
 FROM node:20-alpine AS build
 
 WORKDIR /app
-COPY package.json yarn.lock ./
 
-RUN corepack enable && yarn install
+# copy dependency manifests first (for caching)
+COPY package.json package-lock.json ./
 
+RUN npm install
+
+# copy source
 COPY . .
-RUN yarn build
+
+RUN npm run build
+
 
 # Production stage
 FROM nginx:alpine
