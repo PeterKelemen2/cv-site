@@ -2,8 +2,14 @@ name: Deploy
 
 on:
   push:
-    tags:
-      - '*'
+    branches:
+      - main
+    paths:
+      - 'src/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'Dockerfile'
+      - '.github/workflows/**'
   workflow_dispatch:
 
 permissions:
