@@ -1,6 +1,6 @@
 services:
   cv-site:
-    image: ghcr.io/PeterKelemen2/cv-site:latest
+    image: ghcr.io/peterkelemen2/cv-site:latest
     container_name: cv-site
     restart: unless-stopped
     networks:
