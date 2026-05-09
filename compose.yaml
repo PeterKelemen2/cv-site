@@ -1,5 +1,6 @@
 services:
   cv-site:
+    container_name: cv-site
     image: ghcr.io/peterkelemen2/cv-site:latest
     restart: unless-stopped
 
