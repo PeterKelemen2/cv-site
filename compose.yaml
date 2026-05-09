@@ -1,6 +1,6 @@
 services:
   cv-site:
-    image: ghcr.io/owner/repo:latest
+    image: ghcr.io/peterkelemen2/cv-site:latest
     restart: unless-stopped
 
     networks:
