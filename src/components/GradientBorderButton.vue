@@ -32,10 +32,12 @@ defineProps({
     from var(--gradient-angle),
     #f3e8ff,
     #dd7ef0 10deg,
-    #dd7ef0 135deg,
+    #a855f7 135deg,
     #3b82f6 180deg,
     #3b82f6 270deg,
-    #a855f7 350deg,
+    #3b82f6 300deg,
+    #a855f7 335deg,
+    #dd7ef0 350deg,
     #f3e8ff 360deg
   );
   box-shadow:
@@ -71,11 +73,14 @@ defineProps({
 .connect-border:hover {
   --gradient-angle: 360deg;
   box-shadow:
-    -2px -2px 8px rgba(233, 213, 255, 0.4),
-    0px -2px 8px rgba(192, 132, 252, 0.4),
-    2px 2px 8px rgba(37, 99, 235, 0.4),
-    -2px 2px 8px rgba(147, 51, 234, 0.4),
-    0 0 12px rgba(168, 85, 247, 0.3);
+    0 -2px 8px rgba(233, 213, 255, 0.18),
+    2px -1px 8px rgba(192, 132, 252, 0.16),
+    3px 0px 10px rgba(147, 51, 234, 0.16),
+    2px 3px 10px rgba(37, 99, 235, 0.16),
+    0px 4px 12px rgba(37, 99, 235, 0.14),
+    -2px 3px 10px rgba(147, 51, 234, 0.16),
+    -2px -1px 8px rgba(233, 213, 255, 0.14),
+    0 0 10px rgba(147, 51, 234, 0.12);
 }
 
 .connect-border:hover::before {
