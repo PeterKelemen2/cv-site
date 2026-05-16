@@ -95,13 +95,13 @@ const navLinks = [
 .connect-border {
   background: conic-gradient(
     from 285deg,
-    #e9d5ff,
-    #c084fc 10deg,
-    #c084fc 135deg,
-    #2563eb 180deg,
-    #2563eb 270deg,
-    #9333ea 350deg,
-    #e9d5ff 360deg
+    #f3e8ff,
+    #dd7ef0 10deg,
+    #dd7ef0 135deg,
+    #3b82f6 180deg,
+    #3b82f6 270deg,
+    #a855f7 350deg,
+    #f3e8ff 360deg
   );
   box-shadow:
     -2px -2px 4px rgba(233, 213, 255, 0.2),
@@ -115,14 +115,14 @@ const navLinks = [
 
 .connect-border:hover {
   background: conic-gradient(
-    from 285deg,
-    #f3e8ff,
-    #dd7ef0 10deg,
-    #dd7ef0 135deg,
-    #3b82f6 180deg,
-    #3b82f6 270deg,
-    #a855f7 350deg,
-    #f3e8ff 360deg
+    from 360deg,
+    #e9d5ff,
+    #c084fc 60deg,
+    #9333ea 100deg,
+    #2563eb 120deg,
+    #2563eb 230deg,
+    #9333ea 270deg,
+    #e9d5ff 360deg
   );
   box-shadow:
     -2px -2px 8px rgba(233, 213, 255, 0.4),
