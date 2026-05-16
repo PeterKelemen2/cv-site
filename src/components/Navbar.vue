@@ -1,5 +1,6 @@
 <script setup>
 import { CodeXml, MailSearch } from 'lucide-vue-next'
+import GradientBorderButton from './GradientBorderButton.vue'
 
 const navLinks = [
   { label: 'Home', path: '/' },
@@ -42,12 +43,10 @@ const navLinks = [
           </RouterLink>
         </div>
         <div class="absolute right-0 top-1/2 -translate-y-1/2 flex items-center justify-center">
-          <div class="connect-border inline-block p-px rounded-lg">
-            <button class="px-3 py-2 rounded-lg bg-gray-900 text-gray-200 flex items-center gap-2">
-              <MailSearch class="size-5 md:hidden" />
-              <span class="hidden md:inline">Let's connect</span>
-            </button>
-          </div>
+          <GradientBorderButton>
+            <MailSearch class="size-5 md:hidden" />
+            <span class="hidden md:inline">Let's connect</span>
+          </GradientBorderButton>
         </div>
       </div>
     </div>
@@ -90,45 +89,5 @@ const navLinks = [
 :deep(.icon-gradient) {
   stroke: url(#icon-gradient);
   filter: drop-shadow(0 0 6px rgba(139, 92, 246, 0.6));
-}
-
-.connect-border {
-  background: conic-gradient(
-    from 285deg,
-    #f3e8ff,
-    #dd7ef0 10deg,
-    #dd7ef0 135deg,
-    #3b82f6 180deg,
-    #3b82f6 270deg,
-    #a855f7 350deg,
-    #f3e8ff 360deg
-  );
-  box-shadow:
-    -2px -2px 4px rgba(233, 213, 255, 0.2),
-    0px -2px 4px rgba(192, 132, 252, 0.2),
-    2px 2px 4px rgba(37, 99, 235, 0.2),
-    -2px 2px 4px rgba(147, 51, 234, 0.2);
-  transition:
-    background 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-.connect-border:hover {
-  background: conic-gradient(
-    from 360deg,
-    #e9d5ff,
-    #c084fc 60deg,
-    #9333ea 100deg,
-    #2563eb 120deg,
-    #2563eb 230deg,
-    #9333ea 270deg,
-    #e9d5ff 360deg
-  );
-  box-shadow:
-    -2px -2px 8px rgba(233, 213, 255, 0.4),
-    0px -2px 8px rgba(192, 132, 252, 0.4),
-    2px 2px 8px rgba(37, 99, 235, 0.4),
-    -2px 2px 8px rgba(147, 51, 234, 0.4),
-    0 0 12px rgba(168, 85, 247, 0.3);
 }
 </style>
