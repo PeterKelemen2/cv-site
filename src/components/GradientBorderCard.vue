@@ -75,7 +75,7 @@ const borderStyle = computed(() => ({
 
 <template>
   <div ref="borderEl" :style="borderStyle" class="gradient-border-card rounded-lg">
-    <div class="relative z-10 rounded-lg bg-gray-900">
+    <div class="relative z-10 h-full rounded-lg bg-gray-900">
       <slot />
     </div>
   </div>

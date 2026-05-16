@@ -3,19 +3,46 @@ import GradientBorderCard from '@/components/GradientBorderCard.vue'
 </script>
 
 <template>
-  <div class="bg-gray-900 min-h-screen flex items-center justify-center gap-2">
-    <GradientBorderCard :border-width="2" :colors="['#3672a4', '#ffd248']">
-      <div class="p-6">Python</div>
-    </GradientBorderCard>
-    <GradientBorderCard :border-width="2" :colors="['#ea2d2e', '#0074bd']">
-      <div class="p-6">Java</div>
-    </GradientBorderCard>
-    <GradientBorderCard :border-width="2" :colors="['#a37add', '#a37add', '#360092']">
-      <div class="p-6">C#</div>
-    </GradientBorderCard>
-    <GradientBorderCard :border-width="2" :colors="['#e44d26', '#f16529', '#f7a541']">
-      <div class="p-6">HTML</div>
-    </GradientBorderCard>
+  <div class="bg-gray-900 min-h-screen flex items-center justify-center p-8">
+    <div class="flex flex-col gap-2 w-full max-w-3xl">
+      <GradientBorderCard
+        :border-width="2"
+        :colors="['#3b82f6', '#a855f7', '#ec4899', '#f97316']"
+        class="w-full h-96 max-h-96"
+      >
+        <div class="h-full p-6" />
+      </GradientBorderCard>
+      <div class="flex gap-2">
+        <GradientBorderCard
+          :border-width="2"
+          :colors="['#3672a4', '#ffd248']"
+          class="flex-1 h-32 max-h-32"
+        >
+          <div class="h-full p-6 flex items-center justify-center text-gray-200">Python</div>
+        </GradientBorderCard>
+        <GradientBorderCard
+          :border-width="2"
+          :colors="['#ea2d2e', '#0074bd']"
+          class="flex-1 h-32 max-h-32"
+        >
+          <div class="h-full p-6 flex items-center justify-center text-gray-200">Java</div>
+        </GradientBorderCard>
+        <GradientBorderCard
+          :border-width="2"
+          :colors="['#a37add', '#a37add', '#360092']"
+          class="flex-1 h-32 max-h-32"
+        >
+          <div class="h-full p-6 flex items-center justify-center text-gray-200">C#</div>
+        </GradientBorderCard>
+        <GradientBorderCard
+          :border-width="2"
+          :colors="['#e44d26', '#f16529', '#f7a541']"
+          class="flex-1 h-32 max-h-32"
+        >
+          <div class="h-full p-6 flex items-center justify-center text-gray-200">HTML</div>
+        </GradientBorderCard>
+      </div>
+    </div>
   </div>
 </template>
 
