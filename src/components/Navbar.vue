@@ -108,5 +108,27 @@ const navLinks = [
     0px -2px 4px rgba(192, 132, 252, 0.2),
     2px 2px 4px rgba(37, 99, 235, 0.2),
     -2px 2px 4px rgba(147, 51, 234, 0.2);
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.connect-border:hover {
+  background: conic-gradient(
+    from 285deg,
+    #f3e8ff,
+    #dd7ef0 10deg,
+    #dd7ef0 135deg,
+    #3b82f6 180deg,
+    #3b82f6 270deg,
+    #a855f7 350deg,
+    #f3e8ff 360deg
+  );
+  box-shadow:
+    -2px -2px 8px rgba(233, 213, 255, 0.4),
+    0px -2px 8px rgba(192, 132, 252, 0.4),
+    2px 2px 8px rgba(37, 99, 235, 0.4),
+    -2px 2px 8px rgba(147, 51, 234, 0.4),
+    0 0 12px rgba(168, 85, 247, 0.3);
 }
 </style>
