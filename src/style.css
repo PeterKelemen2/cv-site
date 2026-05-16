@@ -12,9 +12,11 @@
 @supports not (font-variation-settings: normal) {
   html {
     font-family: var(--font-inter);
+    color: azure;
   }
 }
 
 html {
   font-family: var(--font-inter);
+  color: azure;
 }
