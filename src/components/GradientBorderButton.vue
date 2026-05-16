@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { useGradientBorderAngle } from '@/composables/useGradientBorderAngle'
 
 defineProps({
   label: {
@@ -8,26 +8,7 @@ defineProps({
   },
 })
 
-const borderEl = ref(null)
-
-function updateAngle() {
-  if (!borderEl.value) return
-  const w = borderEl.value.offsetWidth
-  const h = borderEl.value.offsetHeight
-  // Angle (clockwise from top) to the top-left corner from the element center
-  const deg = (Math.atan2(-w / 2, h / 2) * (180 / Math.PI) + 360) % 360
-  borderEl.value.style.setProperty('--base-angle', `${deg}deg`)
-}
-
-let observer
-
-onMounted(() => {
-  updateAngle()
-  observer = new ResizeObserver(updateAngle)
-  observer.observe(borderEl.value)
-})
-
-onBeforeUnmount(() => observer?.disconnect())
+const { borderEl } = useGradientBorderAngle()
 </script>
 
 <template>
