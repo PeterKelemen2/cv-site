@@ -61,11 +61,11 @@ const navLinks = [
 :deep(a::after) {
   content: '';
   position: absolute;
-  bottom: -1px;
+  bottom: -2px;
   left: 50%;
   transform: translateX(-50%);
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -78,8 +78,13 @@ const navLinks = [
 
 :deep(.router-link-active)::after {
   opacity: 1;
-  background-color: rgb(79, 135, 255);
-  box-shadow: 0 0 8px rgba(139, 92, 246, 0.95);
+
+  background: linear-gradient(135deg, rgb(79, 135, 255) 0%, rgba(139, 92, 246, 1) 100%);
+
+  box-shadow:
+    -2px -2px 6px rgba(79, 135, 255, 0.45),
+    2px 2px 8px rgba(139, 92, 246, 0.45),
+    0 0 10px rgba(139, 92, 246, 0.25);
 }
 
 :deep(.router-link-active:not(.router-link-exact-active))::after {
@@ -88,6 +93,6 @@ const navLinks = [
 
 :deep(.icon-gradient) {
   stroke: url(#icon-gradient);
-  filter: drop-shadow(0 0 6px rgba(139, 92, 246, 0.6));
+  filter: drop-shadow(0px 0px 6px rgba(183, 154, 250, 0.8));
 }
 </style>
