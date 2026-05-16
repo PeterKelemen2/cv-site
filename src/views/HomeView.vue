@@ -1,17 +1,21 @@
 <script setup>
 import GradientBorderCard from '@/components/GradientBorderCard.vue'
 
-const smallSize = 'h-40 max-h-40'
-const bigSize = 'h-128 max-h-128'
+const smallSize = 'h-40 max-h-40 md:h-40 md:max-h-40'
+const bigSize = 'h-48 max-h-48 md:h-128 md:max-h-128'
 </script>
 
 <template>
-  <div class="bg-gray-900 min-h-screen flex items-center justify-center p-8">
-    <div class="flex gap-8 w-full max-w-7xl items-center">
-      <div class="flex-1 flex flex-col gap-4 self-start">
+  <div class="bg-gray-900 min-h-full flex items-center justify-center p-4 md:p-8">
+    <div class="flex flex-col md:flex-row gap-6 md:gap-8 w-full max-w-7xl items-center">
+      <div class="flex flex-col gap-4 md:flex-1 md:self-start">
         <div>
           <span class="text-3xl"
-            >Lorem ipsum dolor <span class="text-emerald-400">sit amet</span></span
+            >Lorem ipsum dolor
+            <span
+              class="bg-linear-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent font-bold"
+              >sit amet</span
+            ></span
           >
         </div>
         <div>
