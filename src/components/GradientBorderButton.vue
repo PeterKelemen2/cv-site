@@ -1,14 +1,37 @@
 <script setup>
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+
 defineProps({
   label: {
     type: String,
     default: "Let's connect",
   },
 })
+
+const borderEl = ref(null)
+
+function updateAngle() {
+  if (!borderEl.value) return
+  const w = borderEl.value.offsetWidth
+  const h = borderEl.value.offsetHeight
+  // Angle (clockwise from top) to the top-left corner from the element center
+  const deg = (Math.atan2(-w / 2, h / 2) * (180 / Math.PI) + 360) % 360
+  borderEl.value.style.setProperty('--base-angle', `${deg}deg`)
+}
+
+let observer
+
+onMounted(() => {
+  updateAngle()
+  observer = new ResizeObserver(updateAngle)
+  observer.observe(borderEl.value)
+})
+
+onBeforeUnmount(() => observer?.disconnect())
 </script>
 
 <template>
-  <div class="connect-border inline-block p-px rounded-lg">
+  <div ref="borderEl" class="connect-border inline-block p-px rounded-lg">
     <button
       class="relative z-10 px-3 py-2 rounded-lg bg-gray-900 text-gray-200 flex items-center gap-2"
     >
@@ -21,16 +44,16 @@ defineProps({
 <style scoped>
 @property --gradient-angle {
   syntax: '<angle>';
-  initial-value: 285deg;
+  initial-value: 315deg;
   inherits: false;
 }
 
 .connect-border {
-  --gradient-angle: 285deg;
+  --gradient-angle: var(--base-angle, 315deg);
   position: relative;
   background: conic-gradient(
     from var(--gradient-angle),
-    #f3e8ff,
+    #f3e8ff 0deg,
     #dd7ef0 10deg,
     #a855f7 135deg,
     #3b82f6 180deg,
@@ -57,7 +80,7 @@ defineProps({
   border-radius: inherit;
   background: conic-gradient(
     from 360deg,
-    #e9d5ff,
+    #e9d5ff 0deg,
     #c084fc 60deg,
     #9333ea 100deg,
     #2563eb 120deg,
