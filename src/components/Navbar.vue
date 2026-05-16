@@ -103,5 +103,10 @@ const navLinks = [
     #9333ea 350deg,
     #e9d5ff 360deg
   );
+  box-shadow:
+    -2px -2px 4px rgba(233, 213, 255, 0.2),
+    0px -2px 4px rgba(192, 132, 252, 0.2),
+    2px 2px 4px rgba(37, 99, 235, 0.2),
+    -2px 2px 4px rgba(147, 51, 234, 0.2);
 }
 </style>
