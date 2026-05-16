@@ -1,7 +1,5 @@
 <script setup></script>
 
-<template>
-  <router-view />
-</template>
+<template>Home View</template>
 
 <style scoped></style>
