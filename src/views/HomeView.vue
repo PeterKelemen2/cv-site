@@ -1,79 +1,85 @@
 <script setup>
 import GradientBorderCard from '@/components/GradientBorderCard.vue'
+import { projects } from '@/data/projects'
 
 const smallSize = 'h-40 max-h-40 md:h-40 md:max-h-40'
-const bigSize = 'h-48 max-h-48 md:h-128 md:max-h-128'
 </script>
 
 <template>
   <div class="bg-gray-900 min-h-full flex items-center justify-center p-4 md:p-8">
-    <div class="flex flex-col md:flex-row gap-6 md:gap-8 w-full max-w-7xl items-center">
-      <div class="flex flex-col gap-4 md:flex-1 md:self-start">
+    <div class="flex flex-col md:flex-row gap-6 md:gap-8 w-full max-w-7xl items-start">
+      <div class="flex flex-col gap-4 md:flex-1 md:sticky md:top-8">
         <div>
           <span class="text-3xl"
-            >Lorem ipsum dolor
+            >Hi, I'm
             <span
               class="bg-linear-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent font-bold"
-              >sit amet</span
+              >Péter Kelemen</span
             ></span
           >
         </div>
         <div>
-          <span
-            >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean hendrerit nibh justo.
-            Donec vehicula nunc nec odio tincidunt, elementum efficitur ligula venenatis. Donec
-            aliquet placerat felis, convallis commodo quam ullamcorper sed. Phasellus fermentum
-            convallis justo, at convallis erat sodales eu. Vivamus et ex semper, rhoncus neque et,
-            interdum lorem. Quisque iaculis elementum ante nec consectetur. Integer non efficitur
-            dolor, eget dictum risus. Nullam hendrerit risus sed laoreet tempus. In hac habitasse
-            platea dictumst. Vestibulum vel rutrum velit, sed sollicitudin risus. Fusce condimentum
-            libero ac rhoncus iaculis. Ut et arcu libero. Nunc non turpis vel urna molestie
-            scelerisque. Suspendisse gravida rutrum porttitor.</span
+          <span class="text-gray-300"
+            >I'm a software developer who enjoys building full-stack applications end to end — from
+            low-level device communication and background services to clean, real-time web
+            interfaces. I work across .NET, Python, and Vue, and I care about secure, maintainable
+            systems that ship in production. Below are a couple of projects that show how I bring
+            those pieces together.</span
           >
         </div>
       </div>
-      <div class="flex flex-col gap-2 w-full max-w-4xl">
-        <GradientBorderCard
-          :border-width="2"
-          :colors="['#3b82f6', '#a855f7', '#ec4899', '#f97316']"
-          class="w-full"
-          :class="bigSize"
-        >
-          <div class="h-full p-6" />
-        </GradientBorderCard>
-        <div class="flex gap-2">
-          <GradientBorderCard
-            :border-width="2"
-            :colors="['#3672a4', '#ffd248']"
-            class="flex-1"
-            :class="smallSize"
-          >
-            <div class="h-full p-6 flex items-center justify-center text-gray-200">Python</div>
+      <div class="flex flex-col gap-8 w-full max-w-4xl">
+        <div v-for="project in projects" :key="project.name" class="flex flex-col gap-2">
+          <GradientBorderCard :border-width="2" :colors="project.cardColors" class="w-full">
+            <div class="h-full p-6 flex flex-col gap-4">
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <h2 class="text-2xl font-bold text-gray-100">{{ project.name }}</h2>
+                  <p class="text-sm text-gray-400">{{ project.tagline }}</p>
+                </div>
+                <a
+                  :href="project.githubUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center shrink-0 rounded-md border border-gray-700 px-3 py-1.5 text-sm text-gray-200 transition-colors hover:border-gray-500 hover:bg-gray-800"
+                  ><img
+                    src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
+                    alt="GitHub"
+                    class="w-4 h-4 mr-2"
+                    style="filter: invert(1) brightness(2)"
+                  />
+                  GitHub →</a
+                >
+              </div>
+              <p class="text-gray-300">{{ project.description }}</p>
+              <ul class="flex flex-col gap-1.5 text-sm text-gray-300">
+                <li
+                  v-for="feature in project.features"
+                  :key="feature"
+                  class="flex items-start gap-2"
+                >
+                  <span
+                    class="mt-2 size-1.5 shrink-0 rounded-full bg-linear-to-r from-blue-500 to-purple-500"
+                  />
+                  <span>{{ feature }}</span>
+                </li>
+              </ul>
+            </div>
           </GradientBorderCard>
-          <GradientBorderCard
-            :border-width="2"
-            :colors="['#ea2d2e', '#0074bd']"
-            class="flex-1"
-            :class="smallSize"
-          >
-            <div class="h-full p-6 flex items-center justify-center text-gray-200">Java</div>
-          </GradientBorderCard>
-          <GradientBorderCard
-            :border-width="2"
-            :colors="['#a37add', '#a37add', '#360092']"
-            class="flex-1"
-            :class="smallSize"
-          >
-            <div class="h-full p-6 flex items-center justify-center text-gray-200">C#</div>
-          </GradientBorderCard>
-          <GradientBorderCard
-            :border-width="2"
-            :colors="['#e44d26', '#f16529', '#f7a541']"
-            class="flex-1"
-            :class="smallSize"
-          >
-            <div class="h-full p-6 flex items-center justify-center text-gray-200">HTML</div>
-          </GradientBorderCard>
+          <div class="flex gap-2">
+            <GradientBorderCard
+              v-for="tech in project.technologies"
+              :key="tech.name"
+              :border-width="2"
+              :colors="tech.colors"
+              class="flex-1"
+              :class="smallSize"
+            >
+              <div class="h-full p-6 flex items-center justify-center text-gray-200">
+                {{ tech.name }}
+              </div>
+            </GradientBorderCard>
+          </div>
         </div>
       </div>
     </div>

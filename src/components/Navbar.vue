@@ -4,10 +4,14 @@ import GradientBorderButton from './GradientBorderButton.vue'
 
 const navLinks = [
   { label: 'Home', path: '/' },
-  { label: 'About', path: '/about' },
-  { label: 'Projects', path: '/projects' },
-  { label: 'Contact', path: '/contact' },
+  // { label: 'About', path: '/about' },
+  // { label: 'Projects', path: '/projects' },
+  // { label: 'Contact', path: '/contact' },
 ]
+
+function openEmail() {
+  window.location.href = 'mailto:peter.kelemen456@gmail.com'
+}
 </script>
 
 <template>
@@ -43,7 +47,7 @@ const navLinks = [
           </RouterLink>
         </div>
         <div class="absolute right-0 top-1/2 -translate-y-1/2 flex items-center justify-center">
-          <GradientBorderButton>
+          <GradientBorderButton @click="openEmail">
             <MailSearch class="size-5 md:hidden" />
             <span class="hidden md:inline">Let's connect</span>
           </GradientBorderButton>
