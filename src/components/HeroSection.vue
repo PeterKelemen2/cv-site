@@ -32,7 +32,7 @@ function scrollTo(id) {
     :class="{ 'reveal-in': revealed }"
   >
     <div class="flex flex-col gap-5 md:flex-1">
-      <div
+      <!-- <div
         class="inline-flex w-fit items-center gap-2 rounded-full border border-gray-700/70 bg-gray-900/60 px-3 py-1 backdrop-blur-sm"
       >
         <span class="relative flex size-2">
@@ -42,12 +42,11 @@ function scrollTo(id) {
           <span class="relative inline-flex size-2 rounded-full bg-emerald-500" />
         </span>
         <span class="font-mono text-xs text-gray-300">available for work</span>
-      </div>
+      </div> -->
 
       <h1 class="text-4xl md:text-5xl font-bold leading-tight">
         Hi, I'm
-        <span
-          class="bg-linear-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent"
+        <span class="bg-linear-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent"
           >Péter Kelemen</span
         >
       </h1>
