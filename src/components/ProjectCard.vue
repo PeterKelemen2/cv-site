@@ -115,21 +115,41 @@ function getSelectedTech() {
           <div v-if="getSelectedTech()">
             <div class="border-t border-gray-700 pt-4 overflow-hidden">
               <Transition :name="'slide-' + slideDirection" mode="out-in">
-                <div :key="selectedTech" class="flex flex-col gap-1.5">
-                  <h4
-                    class="text-sm font-semibold"
+                <div :key="selectedTech" class="flex gap-3">
+                  <span
+                    class="mt-1 w-1 shrink-0 self-stretch rounded-full"
                     :style="{
-                      background: `linear-gradient(to right, ${getSelectedTech().colors[0]}, ${getSelectedTech().colors[getSelectedTech().colors.length - 1]})`,
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      backgroundClip: 'text',
+                      background: `linear-gradient(to bottom, ${getSelectedTech().colors[0]}, ${getSelectedTech().colors[getSelectedTech().colors.length - 1]})`,
                     }"
-                  >
-                    {{ getSelectedTech().name }}
-                  </h4>
-                  <p class="text-sm text-gray-300 leading-relaxed">
-                    {{ getSelectedTech().techDescription }}
-                  </p>
+                  />
+                  <div class="flex flex-col gap-1.5">
+                    <div class="flex items-center gap-2">
+                      <img
+                        v-if="techIcons[getSelectedTech().name]"
+                        :src="techIcons[getSelectedTech().name]"
+                        alt=""
+                        aria-hidden="true"
+                        class="size-4 object-contain"
+                      />
+                      <h4
+                        class="mono-kicker text-sm font-semibold"
+                        :style="{
+                          background: `linear-gradient(to right, ${getSelectedTech().colors[0]}, ${getSelectedTech().colors[getSelectedTech().colors.length - 1]})`,
+                          WebkitBackgroundClip: 'text',
+                          WebkitTextFillColor: 'transparent',
+                          backgroundClip: 'text',
+                        }"
+                      >
+                        {{ getSelectedTech().name }}
+                      </h4>
+                      <span class="font-mono text-[0.625rem] text-gray-600"
+                        >// role in project</span
+                      >
+                    </div>
+                    <p class="text-sm text-gray-300 leading-relaxed">
+                      {{ getSelectedTech().techDescription }}
+                    </p>
+                  </div>
                 </div>
               </Transition>
             </div>
@@ -140,33 +160,73 @@ function getSelectedTech() {
 
     <div class="flex gap-2">
       <GradientBorderCard
-        v-for="tech in project.technologies"
+        v-for="(tech, index) in project.technologies"
         :key="tech.name"
         :border-width="2"
         :colors="tech.colors"
-        class="flex-1 cursor-pointer select-none transition-opacity"
+        class="flex-1 cursor-pointer select-none transition-all duration-300"
         :class="[
           smallSize,
-          selectedTech !== null && selectedTech !== tech.name ? 'opacity-40' : 'opacity-100',
+          selectedTech !== null && selectedTech !== tech.name
+            ? 'opacity-40 hover:opacity-70'
+            : 'opacity-100',
+          selectedTech === tech.name ? '-translate-y-1' : '',
         ]"
         @click="selectTech(tech.name)"
       >
         <div class="relative h-full overflow-hidden group">
+          <!-- color glow tint -->
+          <div
+            class="absolute inset-0 transition-opacity duration-300"
+            :class="selectedTech === tech.name ? 'opacity-100' : 'opacity-0 group-hover:opacity-60'"
+            :style="{
+              background: `radial-gradient(120% 90% at 30% 120%, ${tech.colors[0]}33, transparent 70%)`,
+            }"
+          />
           <img
             v-if="techIcons[tech.name]"
             :src="techIcons[tech.name]"
             alt=""
             aria-hidden="true"
-            class="absolute pointer-events-none select-none w-auto transition-opacity duration-300"
+            class="absolute pointer-events-none select-none w-auto transition-all duration-300"
             :class="
-              selectedTech === tech.name ? 'opacity-100' : 'opacity-30 group-hover:opacity-100'
+              selectedTech === tech.name
+                ? 'opacity-100 scale-105'
+                : 'opacity-30 group-hover:opacity-100 group-hover:scale-105'
             "
             style="top: 50%; left: 38%; transform: translate(-50%, -50%); height: 130%"
           />
-          <span
-            class="absolute bottom-4 left-4 text-sm font-semibold tracking-wide text-gray-200 z-10"
-            >{{ tech.name }}</span
+          <!-- index marker -->
+          <span class="absolute top-3 left-4 font-mono text-[0.625rem] text-gray-500 z-10"
+            >0{{ index + 1 }}</span
           >
+          <!-- active indicator -->
+          <span
+            class="absolute top-3 right-4 z-10 transition-opacity duration-300"
+            :class="selectedTech === tech.name ? 'opacity-100' : 'opacity-0'"
+          >
+            <span class="relative flex size-2">
+              <span
+                class="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"
+                :style="{ backgroundColor: tech.colors[0] }"
+              />
+              <span
+                class="relative inline-flex size-2 rounded-full"
+                :style="{ backgroundColor: tech.colors[0] }"
+              />
+            </span>
+          </span>
+          <!-- label -->
+          <div class="absolute bottom-4 left-4 z-10 flex flex-col gap-1">
+            <span class="text-sm font-semibold tracking-wide text-gray-100">{{ tech.name }}</span>
+            <span
+              class="h-0.5 rounded-full transition-all duration-300"
+              :class="selectedTech === tech.name ? 'w-8' : 'w-4 group-hover:w-8'"
+              :style="{
+                background: `linear-gradient(to right, ${tech.colors[0]}, ${tech.colors[tech.colors.length - 1]})`,
+              }"
+            />
+          </div>
         </div>
       </GradientBorderCard>
     </div>
