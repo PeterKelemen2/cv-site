@@ -68,8 +68,9 @@ function getSelectedTech() {
         <div class="relative flex items-start justify-between gap-4">
           <div class="flex flex-col gap-1.5">
             <span class="mono-kicker text-[0.625rem] text-gray-500">{{ slug }}</span>
-            <h3 class="text-2xl font-bold leading-tight">
+            <h3 class="text-3xl font-bold leading-tight">
               <span
+                class="project-title"
                 :style="{
                   background: `linear-gradient(to right, ${project.cardColors[0]}, ${project.cardColors[project.cardColors.length - 1]})`,
                   WebkitBackgroundClip: 'text',
@@ -273,6 +274,9 @@ function getSelectedTech() {
 </template>
 
 <style scoped>
+.project-title {
+  filter: brightness(1.5) saturate(1.2) drop-shadow(0 0 0px currentColor);
+}
 /* Panel appear / disappear with height animation */
 .panel-enter-active,
 .panel-leave-active {
