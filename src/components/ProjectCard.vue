@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import GradientBorderCard from '@/components/GradientBorderCard.vue'
 import StatBadge from '@/components/StatBadge.vue'
 import MiniGauge from '@/components/MiniGauge.vue'
@@ -32,6 +32,8 @@ const smallSize = 'h-40 max-h-40 md:h-40 md:max-h-40'
 
 const { revealEl, revealed } = useScrollReveal()
 
+const slug = computed(() => `~/projects/${props.project.name.toLowerCase()}`)
+
 const selectedTech = ref(null)
 const slideDirection = ref('right')
 
@@ -54,40 +56,77 @@ function getSelectedTech() {
 <template>
   <div ref="revealEl" class="reveal flex flex-col gap-2" :class="{ 'reveal-in': revealed }">
     <GradientBorderCard :border-width="2" :colors="project.cardColors" class="w-full">
-      <div class="h-full p-6 flex flex-col gap-5">
-        <div class="flex items-start justify-between gap-4">
-          <div>
-            <h3 class="text-2xl font-bold text-gray-100">{{ project.name }}</h3>
+      <div class="relative h-full p-6 flex flex-col gap-5 overflow-hidden">
+        <!-- decorative corner glow -->
+        <div
+          class="pointer-events-none absolute -top-16 -right-16 size-48 rounded-full blur-3xl opacity-20"
+          :style="{
+            background: `radial-gradient(circle, ${project.cardColors[0]}, transparent 70%)`,
+          }"
+        />
+
+        <div class="relative flex items-start justify-between gap-4">
+          <div class="flex flex-col gap-1.5">
+            <span class="mono-kicker text-[0.625rem] text-gray-500">{{ slug }}</span>
+            <h3 class="text-2xl font-bold leading-tight">
+              <span
+                :style="{
+                  background: `linear-gradient(to right, ${project.cardColors[0]}, ${project.cardColors[project.cardColors.length - 1]})`,
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }"
+                >{{ project.name }}</span
+              >
+            </h3>
             <p class="text-sm text-gray-400">{{ project.tagline }}</p>
           </div>
           <a
             :href="project.githubUrl"
             target="_blank"
             rel="noopener noreferrer"
-            class="flex items-center shrink-0 rounded-md border border-gray-700 px-3 py-1.5 text-sm text-gray-200 transition-colors hover:border-gray-500 hover:bg-gray-800"
+            class="group flex items-center shrink-0 rounded-md border border-gray-700 px-3 py-1.5 text-sm text-gray-200 transition-colors hover:border-gray-500 hover:bg-gray-800"
             ><img
               src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
               alt="GitHub"
               class="w-4 h-4 mr-2"
               style="filter: invert(1) brightness(2)"
             />
-            GitHub →</a
+            <span>GitHub</span>
+            <span class="ml-1 transition-transform group-hover:translate-x-0.5">→</span></a
           >
         </div>
 
-        <p class="font-mono text-xs text-gray-500">{{ project.architecture }}</p>
+        <!-- architecture as a terminal command line -->
+        <div
+          class="relative flex items-center gap-2 rounded-md border border-gray-800 bg-gray-950/60 px-3 py-2 font-mono text-xs"
+        >
+          <span class="text-emerald-500 select-none">$</span>
+          <span class="text-gray-400">{{ project.architecture }}</span>
+        </div>
 
-        <div class="flex flex-col gap-5 md:flex-row md:gap-6">
+        <div class="relative flex flex-col gap-5 md:flex-row md:gap-6">
           <div class="flex flex-col gap-4 md:flex-1">
             <p class="text-gray-300">{{ project.description }}</p>
-            <ul class="flex flex-col gap-1.5 text-sm text-gray-300">
-              <li v-for="feature in project.features" :key="feature" class="flex items-start gap-2">
-                <span
-                  class="mt-2 size-1.5 shrink-0 rounded-full bg-linear-to-r from-blue-500 to-purple-500"
-                />
-                <span>{{ feature }}</span>
-              </li>
-            </ul>
+            <div class="flex flex-col gap-2">
+              <span class="mono-kicker text-[0.625rem] text-gray-500">// highlights</span>
+              <ul class="flex flex-col gap-1.5 text-sm text-gray-300">
+                <li
+                  v-for="feature in project.features"
+                  :key="feature"
+                  class="flex items-start gap-2"
+                >
+                  <span
+                    class="mt-0.5 font-mono text-xs bg-clip-text text-transparent"
+                    :style="{
+                      backgroundImage: `linear-gradient(to right, ${project.cardColors[0]}, ${project.cardColors[project.cardColors.length - 1]})`,
+                    }"
+                    >▹</span
+                  >
+                  <span>{{ feature }}</span>
+                </li>
+              </ul>
+            </div>
           </div>
 
           <div
@@ -102,7 +141,7 @@ function getSelectedTech() {
           </div>
         </div>
 
-        <div v-if="project.stats" class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+        <div v-if="project.stats" class="relative grid grid-cols-2 sm:grid-cols-4 gap-2">
           <StatBadge
             v-for="stat in project.stats"
             :key="stat.label"
@@ -112,7 +151,7 @@ function getSelectedTech() {
         </div>
 
         <Transition name="panel">
-          <div v-if="getSelectedTech()">
+          <div v-if="getSelectedTech()" class="relative">
             <div class="border-t border-gray-700 pt-4 overflow-hidden">
               <Transition :name="'slide-' + slideDirection" mode="out-in">
                 <div :key="selectedTech" class="flex gap-3">
