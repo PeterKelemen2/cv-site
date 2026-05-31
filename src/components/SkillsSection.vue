@@ -9,12 +9,20 @@ const groups = [
   {
     title: 'Languages',
     colors: ['#3b82f6', '#a855f7'],
-    items: ['C# / .NET', 'Python', 'JavaScript', 'TypeScript', 'SQL'],
+    items: ['C# / .NET', 'Python', 'Java', 'JavaScript', 'TypeScript', 'SQL'],
   },
   {
     title: 'Backend',
     colors: ['#512bd4', '#1ba1e2'],
-    items: ['ASP.NET', 'FastAPI', 'SQLAlchemy', 'REST', 'Server-Sent Events', 'JWT / OAuth 2.0'],
+    items: [
+      'ASP.NET',
+      'FastAPI',
+      'PaperMC / Bukkit',
+      'SQLAlchemy',
+      'REST',
+      'Server-Sent Events',
+      'JWT / OAuth 2.0',
+    ],
   },
   {
     title: 'Frontend',
@@ -24,7 +32,7 @@ const groups = [
   {
     title: 'Infrastructure',
     colors: ['#1d63ed', '#2496ed'],
-    items: ['Docker', 'nginx', 'supervisord', 'SQLite', 'SFTP / SSH'],
+    items: ['Docker', 'nginx', 'supervisord', 'Gradle', 'SQLite', 'SFTP / SSH'],
   },
 ]
 </script>

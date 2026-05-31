@@ -89,4 +89,46 @@ export const projects = [
       },
     ],
   },
+  {
+    name: 'Excavator',
+    tagline: 'Minecraft area-mining plugin',
+    description:
+      'A Minecraft Paper 1.21.1 plugin that adds area-mining tools — pickaxes, axes, and shovels that break 2×2×2, 3×3×3, or 5×5×5 cubes of blocks in a single swing, with full vanilla enchantment behaviour.',
+    features: [
+      'Three tool families (pickaxe, axe, shovel) in 2×2, 3×3, and 5×5 sizes',
+      'Full Fortune, Silk Touch, Unbreaking, and Mending support',
+      'Vanilla-accurate XP drops batched into a single orb per swing',
+      'Fires a BlockBreakEvent per block so protection plugins can veto',
+      'Stepped inventory-full action bar warnings and per-player statistics',
+    ],
+    githubUrl: 'https://github.com/PeterKelemen2/ExcavatorPlugin',
+    cardColors: ['#5b8a3c', '#e8a33d', '#3b82f6'],
+    architecture: 'Paper API → event listeners → area-break engine → YAML config & stats',
+    stats: [
+      { label: 'platform', value: 'Paper 1.21' },
+      { label: 'build', value: 'Gradle' },
+      { label: 'config', value: 'YAML' },
+      { label: 'license', value: 'GPLv3' },
+    ],
+    technologies: [
+      {
+        name: 'Java',
+        colors: ['#ea2d2e', '#f8981d'],
+        techDescription:
+          "The plugin is written in Java against the Paper API. It hooks into Bukkit events to intercept block breaks, computes the affected cube relative to the player's facing direction, and replicates vanilla drop, XP, and enchantment behaviour (Fortune, Silk Touch, Unbreaking, Mending) while skipping tile entities and unbreakable blocks.",
+      },
+      {
+        name: 'PaperMC',
+        colors: ['#0288d1', '#21364a'],
+        techDescription:
+          'Built on the PaperMC server platform (Paper 1.21.1). It registers custom craftable tool recipes, command handlers (/excavator give, toggle, reload, stats), and permission nodes, and fires a BlockBreakEvent per block so other plugins can veto protected regions.',
+      },
+      {
+        name: 'Minecraft',
+        colors: ['#5b8a3c', '#8b5a2b'],
+        techDescription:
+          'A gameplay mod for Minecraft Java Edition. It adds three tool families in three area sizes, sneak-to-disable single-block mining, configurable inventory-full warnings on the action bar, and per-player block statistics persisted to disk via stats.yml.',
+      },
+    ],
+  },
 ]

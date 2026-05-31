@@ -9,6 +9,9 @@ import pythonIcon from '@/assets/tech/python.svg'
 import vueIcon from '@/assets/tech/vue.svg'
 import dockerIcon from '@/assets/tech/docker.svg'
 import dotnetIcon from '@/assets/tech/dotnet.svg'
+import javaIcon from '@/assets/tech/java.svg'
+import minecraftIcon from '@/assets/tech/minecraft.svg'
+import papermcIcon from '@/assets/tech/papermc.svg'
 
 const props = defineProps({
   project: { type: Object, required: true },
@@ -20,6 +23,9 @@ const techIcons = {
   Docker: dockerIcon,
   '.NET': dotnetIcon,
   'ASP.NET': dotnetIcon,
+  Java: javaIcon,
+  Minecraft: minecraftIcon,
+  PaperMC: papermcIcon,
 }
 
 const smallSize = 'h-40 max-h-40 md:h-40 md:max-h-40'
