@@ -14,7 +14,7 @@ const { borderEl } = useGradientBorderAngle()
 <template>
   <div ref="borderEl" class="connect-border inline-block p-px rounded-lg">
     <button
-      class="relative z-10 px-3 py-2 rounded-lg bg-gray-900 text-gray-200 flex items-center gap-2"
+      class="cursor-pointer relative z-10 px-3 py-2 rounded-lg bg-gray-900 text-gray-200 flex items-center gap-2"
     >
       <slot />
       <span v-if="!$slots.default" class="hidden md:inline">{{ label }}</span>
