@@ -17,6 +17,14 @@ export const projects = [
     ],
     githubUrl: 'https://github.com/PeterKelemen2/VortexDL',
     cardColors: ['#3b82f6', '#a855f7', '#ec4899', '#f97316'],
+    widget: 'progress',
+    architecture: 'nginx → FastAPI → async job queue → SQLite, with SFTP delivery',
+    stats: [
+      { label: 'auth', value: 'JWT + 2FA' },
+      { label: 'realtime', value: 'SSE' },
+      { label: 'delivery', value: 'SFTP' },
+      { label: 'stack', value: 'Py · Vue' },
+    ],
     technologies: [
       {
         name: 'Python',
@@ -52,6 +60,14 @@ export const projects = [
     ],
     githubUrl: 'https://github.com/PeterKelemen2/DotNetObd',
     cardColors: ['#512bd4', '#7b2fbe', '#1ba1e2'],
+    widget: 'gauge',
+    architecture: 'Vue ↔ ASP.NET API ↔ core library ↔ ELM327 ↔ ECU',
+    stats: [
+      { label: 'core', value: '0 deps' },
+      { label: 'stream', value: 'SSE' },
+      { label: 'package', value: 'NuGet' },
+      { label: 'stack', value: '.NET · Vue' },
+    ],
     technologies: [
       {
         name: '.NET',

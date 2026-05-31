@@ -3,11 +3,15 @@ import { CodeXml, MailSearch } from 'lucide-vue-next'
 import GradientBorderButton from './GradientBorderButton.vue'
 
 const navLinks = [
-  { label: 'Home', path: '/' },
-  // { label: 'About', path: '/about' },
-  // { label: 'Projects', path: '/projects' },
-  // { label: 'Contact', path: '/contact' },
+  { label: 'Home', id: 'home' },
+  { label: 'Projects', id: 'projects' },
+  { label: 'Skills', id: 'skills' },
+  { label: 'Contact', id: 'contact' },
 ]
+
+function scrollToSection(id) {
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+}
 
 function openEmail() {
   window.location.href = 'mailto:peter.kelemen456@gmail.com'
@@ -37,14 +41,15 @@ function openEmail() {
           <CodeXml class="size-10 icon-gradient" />
         </div>
         <div class="flex items-center space-x-1">
-          <RouterLink
+          <button
             v-for="link in navLinks"
-            :key="link.path"
-            :to="link.path"
-            class="relative px-3 py-2 rounded-md font-medium text-gray-400 transition-colors"
+            :key="link.id"
+            type="button"
+            class="nav-link relative px-3 py-2 rounded-md font-medium text-gray-400 transition-colors hover:text-white"
+            @click="scrollToSection(link.id)"
           >
             {{ link.label }}
-          </RouterLink>
+          </button>
         </div>
         <div class="absolute right-0 top-1/2 -translate-y-1/2 flex items-center justify-center">
           <GradientBorderButton @click="openEmail">
@@ -58,11 +63,7 @@ function openEmail() {
 </template>
 
 <style scoped>
-:deep(.router-link-active) {
-  color: rgb(255, 255, 255);
-}
-
-:deep(a::after) {
+.nav-link::after {
   content: '';
   position: absolute;
   bottom: -2px;
@@ -75,12 +76,7 @@ function openEmail() {
   transition: opacity 0.3s ease;
 }
 
-:deep(a:hover)::after {
-  opacity: 1;
-  background-color: rgb(156, 163, 175);
-}
-
-:deep(.router-link-active)::after {
+.nav-link:hover::after {
   opacity: 1;
 
   background: linear-gradient(135deg, rgb(79, 135, 255) 0%, rgba(139, 92, 246, 1) 100%);
@@ -89,10 +85,6 @@ function openEmail() {
     -2px -2px 6px rgba(79, 135, 255, 0.45),
     2px 2px 8px rgba(139, 92, 246, 0.45),
     0 0 10px rgba(139, 92, 246, 0.25);
-}
-
-:deep(.router-link-active:not(.router-link-exact-active))::after {
-  display: none;
 }
 
 :deep(.icon-gradient) {
